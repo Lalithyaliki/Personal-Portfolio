@@ -140,7 +140,7 @@
 }
 .home .outer .inner {
   text-align: center;
-  transition: 0.8s ease;
+  transition: 0.8s ease-in-out;
 }
 @media (min-width: 768px) {
   .home .outer .inner {
@@ -261,6 +261,102 @@
   }
 }
 
+.chat {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  right: -100%;
+  opacity: 0;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  transition: all 0.7s ease-in;
+}
+.chat.open {
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  right: 0;
+  opacity: 1;
+}
+.chat .outside {
+  padding: 20px;
+  width: 43%;
+  height: 50%;
+  background-color: chocolate;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+@media (min-width: 768px) {
+  .chat .outside {
+    width: 22%;
+  }
+}
+.chat .outside .head {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+.chat .outside .head h2 {
+  color: aqua;
+}
+.chat .outside .head button {
+  padding: 5px;
+  width: 25px;
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: black;
+  cursor: pointer;
+}
+.chat .outside input {
+  width: 100%;
+  height: 30px;
+  outline: none;
+  border: none;
+  padding: 10px;
+  background-color: black;
+  margin-bottom: 15px;
+}
+.chat .outside textarea {
+  width: 100%;
+  height: 50%;
+  padding: 7px;
+  outline: none;
+  background-color: black;
+  margin-bottom: 10px;
+  border: none;
+}
+.chat .outside .send {
+  display: flex;
+  justify-content: center;
+}
+.chat .outside .send button {
+  padding: 7px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: aquamarine;
+  text-transform: uppercase;
+  background-color: black;
+  border: none;
+}
+
+.pop-up .pop-msg {
+  position: fixed;
+  top: 15%;
+  width: 95%;
+  left: -100%;
+  opacity: 0;
+  padding: 10px 30px;
+  margin: 0 15px;
+  background-color: lemonchiffon;
+  font-size: 1.5rem;
+  transition: all 0.4s ease-in;
+}
+.pop-up .pop-msg.success {
+  left: 0;
+  opacity: 1;
+}
+
 .skills {
   padding: 60px 0;
   transition: all 1s ease-out;
@@ -289,31 +385,58 @@
   }
 }
 .skills .equal {
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
-  padding: 20px;
+  justify-content: space-between;
 }
 .skills .equal .inner {
   flex-basis: 50%;
-  margin: 10px auto;
+  margin: 0 auto;
+  padding: 8px;
+  transition: all 0.8s ease-in-out;
 }
 @media (min-width: 768px) {
   .skills .equal .inner {
     flex-basis: 25%;
-    text-align: center;
+    height: 200px;
+    padding: 20px 20px 40px 20px;
+  }
+  .skills .equal .inner:hover img {
+    transform: scale(1.05);
+  }
+  .skills .equal .inner:hover p {
+    opacity: 1;
+    margin-top: 2px;
   }
 }
 .skills .equal .inner img {
   border-radius: 20px;
-  width: 270px;
+  width: 100%;
   height: 150px;
   -o-object-fit: fill;
      object-fit: fill;
   box-shadow: 0px 0px 5px aqua;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 .skills .equal .inner img:hover {
   transform: scale(1.05);
+}
+.skills .equal .inner p {
+  display: none;
+}
+@media (min-width: 768px) {
+  .skills .equal .inner p {
+    display: block;
+    text-align: center;
+    margin-top: -40px;
+    opacity: 0;
+    line-height: 1;
+    font-size: 23px;
+    font-family: fantasy;
+    transition: all 0.4s ease;
+  }
 }
 
 .tools {
@@ -345,22 +468,23 @@
 .tools .div {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   padding: 20px;
-  justify-content: center;
 }
 .tools .div .inner {
   flex-basis: 50%;
-  margin: 10px auto;
+  padding: 8px;
+  margin: 0 auto;
 }
 @media (min-width: 768px) {
   .tools .div .inner {
-    flex-basis: 33.33%;
-    text-align: center;
+    flex-basis: 25%;
+    padding: 20px 20px 40px 20px;
   }
 }
 .tools .div .inner img {
   border-radius: 20px;
-  width: 270px;
+  width: 100%;
   height: 150px;
   -o-object-fit: fill;
      object-fit: fill;
@@ -375,11 +499,14 @@
   position: fixed;
   right: 15px;
   bottom: 15px;
-  padding: 10px 10px;
+  padding: 7px;
   border: 1px solid palegreen;
   background-color: green;
-  transition: all 0.4s ease-in-out;
+  transition: 0.8s ease-out;
   cursor: pointer;
+}
+#button.hide {
+  opacity: 0;
 }
 #button i {
   font-size: 25px;
